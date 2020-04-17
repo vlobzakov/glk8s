@@ -70,7 +70,7 @@ deploy-topology:
       kubectl config use-context default;
       sed -i "s/BRANCH_NAME/$CI_COMMIT_REF_NAME/g" topology/*.yaml;
       kubectl apply -f topology/namespace.yaml;
-      kubectl apply -f topology/hw-service.yaml;
+      kubectl apply -f topology/hwservice.yaml;
   only:
     changes:
       - topology/**/*
