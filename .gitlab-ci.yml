@@ -49,6 +49,7 @@ hw-service-package:
   services:
   - docker:dind
   script: |-
+         while true; do [ -S "/var/run/docker.sock" ] && break; echo "Waiting for docker socket"; sleep 3; done
          echo Artifact to deploy: $(ls -1 ./service/target/*.war)
          docker build -t $CI_REGISTRY_IMAGE .
          docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $REGISTRY_HOST:$REGISTRY_PORT
